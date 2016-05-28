@@ -5,7 +5,8 @@ var trainerCards = {};
 function loadTrainerCards() {
     try {
         trainerCards = serialize.unserialize(fs.readFileSync('config/trainercards.json', 'utf8'));
-        Object.assign(CommandParserc
+              Object.assign(CommandParser.commands, trainerCards);
+    } catch (e) {}
 }
 
 setTimeout(function load() {
