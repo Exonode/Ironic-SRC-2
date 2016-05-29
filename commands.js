@@ -22,7 +22,6 @@ global.developers = ['rainythunder', 'darknightskies', 'bandi', 'audinory'];
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
-const parseEmoticons = require('./chat-plugins/emoticons').parseEmoticons;
 const dir = fs.readdirSync(path.resolve(__dirname, 'chat-plugins'));
 
 const MAX_REASON_LENGTH = 300;
@@ -238,9 +237,6 @@ exports.commands = {
 				return this.errorReply("The command '/" + innerCmd + "' was unrecognized or unavailable in private messages. To send a message starting with '/" + innerCmd + "', type '//" + innerCmd + "'.");
 			}
 		}
-
-		let emoteMsg = parseEmoticons(target, room, user, true);
-		if ((!user.blockEmoticons && !targetUser.blockEmoticons) && emoteMsg) target = '/html ' + emoteMsg;
 
 		message = '|pm|' + user.getIdentity() + '|' + targetUser.getIdentity() + '|' + target;
 
