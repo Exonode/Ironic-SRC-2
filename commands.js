@@ -17,7 +17,7 @@
 
 /* eslint no-else-return: "error" */
 
-global.developers = ['rainythunder', 'darknightskies', 'bandi', 'audinory'];
+global.developers = ['rainythunder', 'darknightskies', 'audinory'];
 
 const crypto = require('crypto');
 const fs = require('fs');
