@@ -240,13 +240,17 @@ exports.commands = {
 
 		message = '|pm|' + user.getIdentity() + '|' + targetUser.getIdentity() + '|' + target;
 
-
-		if (!message) message = '|pm|' + user.getIdentity() + '|' + targetUser.getIdentity() + '|' + target;
-		user.send(message);
-		if (targetUser !== user) targetUser.send(message);
-		targetUser.lastPM = user.userid;
-		user.lastPM = targetUser.userid;
-	},
+	user.send(message);
+	if (targetUser !== user) {
+		if (Users.ShadowBan.checkBanned(user)) {
+			Users.ShadowBan.addMessage(user, "Private to " + targetUser.getIdentity(), target);
+		} else {
+			targetUser.send(message);
+			targetUser.lastPM = user.userid;
+			user.lastPM = targetUser.userid;
+		}
+	}
+},
 	msghelp: ["/msg OR /whisper OR /w [username], [message] - Send a private message."],
 
 	blockpm: 'ignorepms',
